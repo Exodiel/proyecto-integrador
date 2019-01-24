@@ -1,0 +1,24 @@
+{
+  "name": "apipi",
+  "version": "1.0.0",
+  "description": "API RESTful for Integrated Proyect",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "Android"
+  ],
+  "author": "Jipson Saad",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "promise-mysql": "^3.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
