@@ -92,8 +92,7 @@ const scoreSubject = async (req, res) => {
     
     if(res1.length > 0 && res2.length > 0 && res3.length > 0 && res4.length > 0 && res5.length > 0 && res6.length > 0 && res7.length > 0 && res8.length > 0 && res9.length > 0 && res10.length > 0 && scoreSubject.length > 0) {
         res.status(200).json({
-            message: 'the query is OK',
-            results: scoreSubject[0].total
+            message: 'the query is OK'
         });
     }else {
         res.status(204).json({message: 'there is no content'});

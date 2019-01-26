@@ -31,4 +31,16 @@ const userScore = async (req, res) => {
     }
 }
 
-module.exports = {subjectUser,userScore};
+const getSubjectScore = async (req, res) => {
+    const {cod_mat, cod_es} = req.body;
+
+    const scoreSubject = await pool.query('SELECT total FROM calificacion WHERE cod_mat = ? AND cod_es = ?', [cod_mat,cod_es]);
+    
+    if (scoreSubject.length > 0) {
+        res.status(200).json({result: scoreSubject[0].total});
+    } else {
+        res.status(204).json({message: 'there is no content'});
+    }
+}
+
+module.exports = {subjectUser,userScore,getSubjectScore};
