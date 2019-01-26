@@ -6,7 +6,7 @@ const userLogin = async (req, res) => {
     if(login.length > 0){
         if(login[0].cedula == cedula && login[0].nombre == nombre) {
             res.status(200).json({
-                result: login[0].id_es
+                result: login[0]
             });
         }else {
             res.status(204).json({message: 'nombre or cedula doesnt not match '});
