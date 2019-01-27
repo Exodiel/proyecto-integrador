@@ -5,7 +5,7 @@ const pool = require('../database');
  */
 const subjectUser = async (req, res) => {
     const {id} = req.params;
-    const subjects = await pool.query('SELECT id_mat,nom_mat FROM estudiante AS es,materia AS mat,detalle_materia AS dt WHERE mat.id_mat = dt.cod_mat AND dt.cod_es = es.id_es AND es.id_es = ?',[id]);
+    const subjects = await pool.query('SELECT id_mat,nom_mat,imagen FROM estudiante AS es,materia AS mat,detalle_materia AS dt WHERE mat.id_mat = dt.cod_mat AND dt.cod_es = es.id_es AND es.id_es = ?',[id]);
     if (subjects.length > 0) {
         res.status(200).json({
             message: 'the query is OK',

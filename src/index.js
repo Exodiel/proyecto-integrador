@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 const loginRoutes = require('./routes/userLoginRoutes');
@@ -19,6 +20,10 @@ app.use(express.json());
 app.use('/api',loginRoutes);
 app.use('/api',subjectRoutes);
 app.use('/api',asksRoutes);
+
+//static files
+app.use('/public',express.static(path.join(__dirname,'public')));
+
 
 //start the server
 app.listen(app.get('port'), () => {
