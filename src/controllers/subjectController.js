@@ -5,7 +5,7 @@ const pool = require('../database');
  */
 const subjectUser = async (req, res) => {
     const {id} = req.params;
-    const subjects = await pool.query('SELECT id_mat,nom_mat,imagen FROM estudiante AS es,materia AS mat,detalle_materia AS dt WHERE mat.id_mat = dt.cod_mat AND dt.cod_es = es.id_es AND es.id_es = ?',[id]);
+    const subjects = await pool.query('SELECT id_mat,nom_mat,imagen, total FROM estudiante AS es,materia AS mat,detalle_materia AS dt, calificacion as cal WHERE mat.id_mat = dt.cod_mat AND dt.cod_es = es.id_es AND cal.cod_mat=mat.id_mat AND cal.cod_es=es.id_es AND es.id_es = ?',[id]);
     if (subjects.length > 0) {
         res.status(200).json({
             message: 'the query is OK',
@@ -31,16 +31,5 @@ const userScore = async (req, res) => {
     }
 }
 
-const getSubjectScore = async (req, res) => {
-    const {cod_mat, cod_es} = req.body;
 
-    const scoreSubject = await pool.query('SELECT total FROM calificacion WHERE cod_mat = ? AND cod_es = ?', [cod_mat,cod_es]);
-    
-    if (scoreSubject.length > 0) {
-        res.status(200).json({result: scoreSubject[0].total});
-    } else {
-        res.status(204).json({message: 'there is no content'});
-    }
-}
-
-module.exports = {subjectUser,userScore,getSubjectScore};
+module.exports = {subjectUser,userScore};
