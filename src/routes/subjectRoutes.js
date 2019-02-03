@@ -4,6 +4,7 @@ const subject = require('../controllers/subjectController');
 
 router.get('/subject/:id',subject.subjectUser);
 router.post('/subject',subject.userScore);
-router.get('/subject/score');
+router.get('/subject/score',subject.getUserScore);
+router.get('/subject/user/:id',subject.getUserOnly);
 
 module.exports = router;

@@ -41,10 +41,25 @@ const getUserScore = async (req, res) => {
         });
     } else {
         res.status(404).json({
-            message: 'Error en el servidor'
+            message: 'No hay contenido'
         });
     }
 }
 
+const getUserOnly = async (req, res) => {
+    const {id} = req.params;
+    const query = await pool.query('SELECT * FROM notas WHERE cod_es = ?',[id]);
 
-module.exports = {subjectUser,userScore,getUserScore};
+    if (result.length > 0) {
+        res.status(200).json({
+            results: query
+        });
+    } else {
+        res.status(404).json({
+            message: 'No hay contenido'
+        });
+    }
+};
+
+
+module.exports = {subjectUser,userScore,getUserScore,getUserOnly};
