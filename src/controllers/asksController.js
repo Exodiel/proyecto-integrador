@@ -9,7 +9,7 @@ const pool = require('../database');
  */
 const asksSubject = async (req, res) =>{
     const {id} = req.params;
-    const ask = await pool.query('SELECT id_pre,cod_mat,enunciado,opcion1,opcion2,opcion3,opcion4,respuesta FROM preguntas WHERE cod_mat = ?',[id]);
+    const ask = await pool.query('SELECT id_pre,cod_mat,enunciado,opcion1,opcion2,opcion3,opcion4 FROM preguntas WHERE cod_mat = ?',[id]);
 
     if(ask.length > 0) {
         res.status(200).json({
