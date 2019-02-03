@@ -39,6 +39,10 @@ const getUserScore = async (req, res) => {
         res.status(200).json({
             results: result
         });
+    } else {
+        res.status(404).json({
+            message: 'Error en el servidor'
+        });
     }
 }
 
