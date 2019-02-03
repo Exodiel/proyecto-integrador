@@ -31,5 +31,16 @@ const userScore = async (req, res) => {
     }
 }
 
+const getUserScore = async (req, res) => {
+    const {cod_es,cod_mat,cod_pre} = req.body;
+    const result = await pool.query('CALL nota_est(?,?,?)',[cod_es,cod_mat,cod_pre]);
 
-module.exports = {subjectUser,userScore};
+    if (result.length > 0) {
+        res.status(200).json({
+            results: result
+        });
+    }
+}
+
+
+module.exports = {subjectUser,userScore,getUserScore};
