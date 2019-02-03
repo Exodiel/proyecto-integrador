@@ -9,10 +9,10 @@ const userLogin = async (req, res) => {
                 result: login[0]
             });
         }else {
-            res.status(204).json({message: 'nombre or cedula doesnt not match '});
+            res.status(204).json({message: 'nombre o cedula no encontradas'});
         }
     }else {
-        res.status(404).json({message: 'there is no content'});
+        res.status(404).json({message: 'Credenciales incorrectas'});
     }
 }
 

@@ -23,10 +23,10 @@ const userScore = async (req, res) => {
     const promedio = (nota1+nota2,nota3+nota4)/4;
     const result = await pool.query('CALL notas(?,?)', [id_es,promedio]);
     if (result) {
-        res.status(200).json({message: 'the query is OK'});
+        res.status(200).json({message: 'Guardado correctamente'});
     } else {
         res.status(404).json({
-            message: 'not saved'
+            message: 'Error en el servidor'
         });
     }
 }
