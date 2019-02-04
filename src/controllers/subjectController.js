@@ -32,8 +32,8 @@ const userScore = async (req, res) => {
 }
 
 const getUserScore = async (req, res) => {
-    const {cod_mat} = req.body;
-    const result = await pool.query('SELECT correcto,incorrecto FROM respuestas WHERE cod_mat = ?',[cod_mat]);
+    const {cod_es} = req.body;
+    const result = await pool.query('SELECT correcto,incorrecto FROM respuestas WHERE cod_es = ?',[cod_es]);
 
     if(result.length > 0) {
         res.status(200).json({result});
