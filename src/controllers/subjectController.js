@@ -21,7 +21,7 @@ const subjectUser = async (req, res) => {
 const userScore = async (req, res) => {
     const {id_es, nota1, nota2, nota3, nota4} = req.body
     const promedio = (nota1+nota2,nota3+nota4)/4;
-    const result = await pool.query('INSERT INTO notas(cod_es,nota)', [id_es,promedio]);
+    const result = await pool.query('INSERT INTO notas(cod_es,nota) VALUES(?,?)', [id_es,promedio]);
     if (result) {
         res.status(200).json({message: 'Guardado correctamente'});
     } else {
