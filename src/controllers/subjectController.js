@@ -50,7 +50,7 @@ const getUserOnly = async (req, res) => {
     const {id} = req.params;
     const query = await pool.query('SELECT * FROM notas WHERE cod_es = ?',[id]);
 
-    if (result.length > 0) {
+    if (query.length > 0) {
         res.status(200).json({
             query
         });
