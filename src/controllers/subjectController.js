@@ -21,7 +21,7 @@ const subjectUser = async (req, res) => {
 const userScore = async (req, res) => {
     const {id_es, nota1, nota2, nota3, nota4} = req.body
     const promedio = (nota1+nota2,nota3+nota4)/4;
-    const result = await pool.query('CALL notas(?,?)', [id_es,promedio]);
+    const result = await pool.query('INSERT INTO notas(cod_es,nota)', [id_es,promedio]);
     if (result) {
         res.status(200).json({message: 'Guardado correctamente'});
     } else {
@@ -32,8 +32,8 @@ const userScore = async (req, res) => {
 }
 
 const getUserScore = async (req, res) => {
-    const {cod_es,cod_mat,cod_pre} = req.body;
-    const result = await pool.query('CALL nota_est(?,?,?)',[cod_es,cod_mat,cod_pre]);
+    const {cod_es,cod_mat} = req.body;
+    const result = await pool.query('SELECT * FROM respuestas WHERE cod_es = ? AND cod_mat = 1',[cod_es,cod_mat]);
 
     if (result.length > 0) {
         res.status(200).json({
