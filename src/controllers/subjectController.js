@@ -32,17 +32,13 @@ const userScore = async (req, res) => {
 }
 
 const getUserScore = async (req, res) => {
-    const {cod_es,cod_mat} = req.body;
-    const result = await pool.query('select nom_mat,correcto,incorrecto from respuestas,materia where cod_mat=id_mat and cod_es=? and cod_mat=?',[cod_es,cod_mat]);
+    const {cod_mat} = req.body;
+    const result = await pool.query('SELECT correcto,incorrecto FROM respuestas WHERE cod_mat = ?',[cod_mat]);
 
-    if (result.length > 0) {
-        res.status(200).json({
-            results: result
-        });
-    } else {
-        res.status(404).json({
-            message: 'No hay contenido'
-        });
+    if(result.length > 0) {
+        res.status(200).json({result});
+    }else {
+        res.status(204).json({message: 'No hay contenido'});
     }
 }
 
