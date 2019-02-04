@@ -52,7 +52,7 @@ const getUserOnly = async (req, res) => {
 
     if (result.length > 0) {
         res.status(200).json({
-            results: query
+            query
         });
     } else {
         res.status(404).json({
