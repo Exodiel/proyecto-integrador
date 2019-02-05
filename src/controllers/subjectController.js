@@ -36,7 +36,9 @@ const getUserScore = async (req, res) => {
     const result = await pool.query('CALL respuesta(?,?)',[cod_es,cod_mat]);
 
     if(result.length > 0) {
-        res.status(200).json({result});
+        res.status(200).json({
+            results: result[0]
+        });
     }else {
         res.status(204).json({message: 'No hay contenido'});
     }
