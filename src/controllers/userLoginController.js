@@ -16,4 +16,17 @@ const userLogin = async (req, res) => {
     }
 }
 
-module.exports = {userLogin};
+const getState = async (req, res) => {
+    const {id_es} = req.body;
+    const state = await pool.query('SELECT estado FROM estudiante WHERE id_es = ?',[id_es]);
+
+    if (state.length > 0) {
+        res.status(200).json({
+            result: state[0]
+        });
+    }else {
+        res.state(404).json({message:'No se encontró el dato'});
+    }
+}
+
+module.exports = {userLogin,getState};
