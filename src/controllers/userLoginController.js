@@ -25,7 +25,7 @@ const getState = async (req, res) => {
             result: state[0]
         });
     }else {
-        res.state(404).json({message:'No se encontró el dato'});
+        res.status(404).json({message:'No se encontró el dato'});
     }
 }
 

@@ -1,7 +1,7 @@
 const database = {
     host: 'localhost',
     user: 'root',
-    password: 'jipson090',
+    password: '',
     database: 'pro_int'
 };
 
