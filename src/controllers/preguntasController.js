@@ -1,39 +1,24 @@
 const pool = require('../database');
 
 
-const guardarPregunta = (req, res) => {
+const guardarPregunta = async (req, res) => {
     const { enunciado_pregunta, opcion1, opcion2, opcion3, opcion4, respuesta, id_contenido } = req.body;
 
-    pool.connect();
+    await pool.query('INSERT INTO preguntas(enunciado_pregunta, opcion1, opcion2, opcion3, opcion4, respuesta, id_contenido) VALUES(?,?,?,?,?,?,?))', [enunciado_pregunta, opcion1, opcion2, opcion3, opcion4, respuesta, id_contenido]);
 
-    pool.query('INSERT INTO preguntas(enunciado_pregunta, opcion1, opcion2, opcion3, opcion4, respuesta, id_contenido) VALUES(?,?,?,?,?,?,?))', [enunciado_pregunta, opcion1, opcion2, opcion3, opcion4, respuesta, id_contenido], function (error, results, fields) {
-        if (error) {
-            res.status(500).json({ message: "error de servidor" });
-            return;
-        };
-
-        res.status(201).json({
-            data: "ok"
-        });
+    return res.status(201).json({
+        data: "ok"
     });
-
-    pool.end();
-
 }
 
-const obtenerPreguntasContenido = (req, res) => {
+const obtenerPreguntasContenido = async (req, res) => {
     const { id_contenido } = req.params;
 
-    pool.connect();
+    const preguntas = await pool.query('SELECT * FROM preguntas WHERE  id_contenido= ?', [id_contenido]);
 
-    pool.query('SELECT * FROM preguntas WHERE  id_contenido= ?', [id_contenido], function (error, results, fields) {
-
-        res.status(201).json({
-            data: results
-        });
+    return res.status(200).json({
+        data: preguntas
     });
-
-    pool.end();
 }
 
 module.exports = { guardarPregunta, obtenerPreguntasContenido }
