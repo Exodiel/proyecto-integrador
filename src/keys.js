@@ -1,8 +1,8 @@
 const database = {
     host: 'localhost',
-    user: 'root',
-    password: 'jipson090',
-    database: 'pro_int'
+    user: 'admin',
+    password: 'JmS090814466P',
+    database: 'tesis_shagui'
 };
 
 module.exports = database;

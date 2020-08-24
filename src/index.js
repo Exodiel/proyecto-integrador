@@ -4,9 +4,11 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express();
-const loginRoutes = require('./routes/userLoginRoutes');
-const subjectRoutes = require('./routes/subjectRoutes');
-const asksRoutes = require('./routes/asksRoutes');
+
+const temaRoutes = require('./routes/temaRoutes');
+const contenidoRoutes = require('./routes/contenidoRoutes');
+const preguntaRoutes = require('./routes/preguntaRoutes');
+const ejercicioRoutes = require('./routes/ejercicioRoutes');
 
 //config 
 app.set('port', process.env.PORT || 3000);
@@ -17,12 +19,13 @@ app.use(cors());
 app.use(express.json());
 
 //routes
-app.use('/api',loginRoutes);
-app.use('/api',subjectRoutes);
-app.use('/api',asksRoutes);
+app.use('/api', temaRoutes);
+app.use('/api', contenidoRoutes);
+app.use('/api', preguntaRoutes);
+app.use('/api', ejercicioRoutes);
 
 //static files
-app.use('/public',express.static(path.join(__dirname,'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 //start the server

@@ -1,13 +1,6 @@
-const mysql = require('promise-mysql');
+const mysql = require('mysql');
 const database = require('./keys');
 
-const pool = mysql.createPool(database);
+let conexion = mysql.createConnection(database);
 
-pool.getConnection()
-    .then(connection => {
-        pool.releaseConnection(connection);
-        console.log('DB is connect');
-    })
-    .catch(err => console.error(err));
-
-module.exports = pool;
+module.exports = conexion;
