@@ -24,5 +24,16 @@ const obtenerContenidosPorTemas = async (req, res) => {
 
 }
 
+const obtenerContenido = async (req, res) => {
+    const { id } = req.params;
 
-module.exports = { guardarContenido, obtenerContenidosPorTemas }
+    const results = await pool.query('SELECT * FROM contenido_teorico WHERE id_contenido_teorico = ?', [id]);
+
+    return res.status(200).json({
+        data: results[0]
+    });
+
+}
+
+
+module.exports = { guardarContenido, obtenerContenidosPorTemas, obtenerContenido }
